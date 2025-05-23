@@ -45,7 +45,7 @@ async function getsongs(folder) { // ફોલ્ડરમાંથી ગીત
                                   </div>
                                   <div class="playnow">
                                       <span>Play Now</span>
-                                      <img class="invert" src="/public/img/play.svg" alt="">
+                                      <img class="invert" src="public/img/play.svg" alt="">
                                   </div></li>`;
         // નવી HTML લાઈન <ul>માં ઉમેરે છે — દરેક ગીત માટે એક <li> બનાવે છે.
 
@@ -69,7 +69,7 @@ const playMusic = (track, pause = false) => { // તે બે arguments લે 
     currentsong.src = `public/${currfolder}/` + track // ગીતના ફોલ્ડર અને નામને મળાવીને audio player માટે source (src) સેટ કરે છે.
     if (!pause) { // જો pause false છે (અર્થાત ગીત વગાડવું છે), તો નીચેનું કોડ ચાલશે.
         currentsong.play() // play song
-        play.src = "/public/img/pause.svg" // પ્લે બટનનો icon બદલે છે, હવે પોઝ દેખાશે જેથી યૂઝરને ખબર પડે કે ગીત ચાલી રહ્યું છે.
+        play.src = "public/img/pause.svg" // પ્લે બટનનો icon બદલે છે, હવે પોઝ દેખાશે જેથી યૂઝરને ખબર પડે કે ગીત ચાલી રહ્યું છે.
     }
     document.querySelector(".songinfo").innerHTML = decodeURI(track) // .songinfo માં ગીતનું નામ બતાવે છે. decodeURI નો ઉપયોગ કરીને %20 ને space માં બદલે છે.
     document.querySelector(".songtime").innerHTML = " 00:00 / 00:00 "
@@ -90,7 +90,7 @@ async function displayAlbums() { // folderમાં રહેલા ગીતો
         if (e.href.includes("/songs/") && !e.href.includes(".htaccess")) { // ફક્ત /songs/ મા હોય અને .htaccess ફાઇલ ન હોય એવી ફોલ્ડર લિંક પર આગળ વધે છે.
             let folder = e.href.split("/").slice(-2)[1] // ફોલ્ડરનું નામ લિંકમાંથી કાઢે છે.
             // Get the metadata of the folder
-            let a = await fetch(`http://127.0.0.1:5500/public/songs/${folder}/info.json`)
+            let a = await fetch(`public/songs/${folder}/info.json`)
             let response = await a.json(); // ફોલ્ડરનું info.json લાવે છે અને તેને object (JSON) માં બદલે છે.
             cardcontainer.innerHTML = cardcontainer.innerHTML + `<div data-folder="${folder}" class="card ">
                         <div  class="play">
@@ -134,11 +134,11 @@ async function main() {
     play.addEventListener("click", () => {
         if (currentsong.paused) {
             currentsong.play()
-            play.src = "/public/img/pause.svg"
+            play.src = "public/img/pause.svg"
         }
         else {
             currentsong.pause()
-            play.src = "/public/img/play.svg"
+            play.src = "public/img/play.svg"
         }
     })
 
